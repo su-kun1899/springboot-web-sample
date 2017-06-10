@@ -28,6 +28,11 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+    @ModelAttribute
+    CustomerForm setupForm() {
+        return new CustomerForm();
+    }
+
     @GetMapping
     public String list(Model model) {
         List<Customer> customers = customerService.findAll();
@@ -36,7 +41,7 @@ public class CustomerController {
     }
 
     @PostMapping(value = "create")
-    public String create(@ModelAttribute @Validated CustomerForm customerForm,
+    public String create(@Validated CustomerForm customerForm,
                          BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return list(model);

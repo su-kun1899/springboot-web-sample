@@ -5,10 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import red.sukun1899.springboot.sample.entity.Customer;
 import red.sukun1899.springboot.sample.service.CustomerService;
 
@@ -51,6 +48,13 @@ public class CustomerController {
         customerService.create(customer);
 
         return "redirect:/customers";
+    }
+
+    @GetMapping(value = "edit", params = "form")
+    public String editForm(@RequestParam Integer id, CustomerForm form) {
+        Customer customer = customerService.findOne(id);
+        BeanUtils.copyProperties(customer, form);
+        return "customers/edit";
     }
 
     public class CustomerForm {

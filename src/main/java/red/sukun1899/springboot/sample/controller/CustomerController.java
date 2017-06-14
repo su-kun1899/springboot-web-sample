@@ -70,6 +70,11 @@ public class CustomerController {
         return "redirect:/customers";
     }
 
+    @RequestMapping(value = "edit", params = "goToTop")
+    public String goToTop() {
+        return "redirect:/customers";
+    }
+
     public class CustomerForm {
         @NotNull
         @Size(min = 1, max = 127)

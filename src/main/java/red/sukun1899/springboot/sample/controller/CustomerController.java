@@ -75,6 +75,12 @@ public class CustomerController {
         return "redirect:/customers";
     }
 
+    @PostMapping(value = "delete")
+    public String delete(@RequestParam Integer id) {
+        customerService.delete(id);
+        return "redirect:/customers";
+    }
+
     public class CustomerForm {
         @NotNull
         @Size(min = 1, max = 127)

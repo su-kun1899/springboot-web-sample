@@ -3,12 +3,12 @@ spring:
     mode: HTML5
     cache: false
   datasource:
-    url: jdbc:h2:file:/tmp/customer
+    url: jdbc:h2:mem:customers;
     username: sa
     password:
-    jpa:
-      hibernate:
-        ddl-auto: validate
   h2:
     console:
       enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: none

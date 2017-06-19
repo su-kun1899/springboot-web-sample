@@ -18,6 +18,10 @@ public class Customer {
     @Column(nullable = false)
     private String lastName;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = true, name = "username")
+    private User user;
+
     public Integer getId() {
         return id;
     }
@@ -40,6 +44,14 @@ public class Customer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
 

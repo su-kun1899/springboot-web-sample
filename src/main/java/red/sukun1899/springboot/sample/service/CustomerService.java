@@ -3,6 +3,7 @@ package red.sukun1899.springboot.sample.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import red.sukun1899.springboot.sample.entity.Customer;
+import red.sukun1899.springboot.sample.entity.User;
 import red.sukun1899.springboot.sample.repository.CustomerRepository;
 
 import java.util.List;
@@ -27,11 +28,13 @@ public class CustomerService {
         return customerRepository.findOne(id);
     }
 
-    public Customer create(Customer customer) {
+    public Customer create(Customer customer, User user) {
+        customer.setUser(user);
         return customerRepository.save(customer);
     }
 
-    public Customer update(Customer customer) {
+    public Customer update(Customer customer, User user) {
+        customer.setUser(user);
         return customerRepository.save(customer);
     }
 

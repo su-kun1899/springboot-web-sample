@@ -1,12 +1,14 @@
 package red.sukun1899.springboot.sample.controller;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import red.sukun1899.springboot.sample.entity.Customer;
+import red.sukun1899.springboot.sample.model.LoginUserDetails;
 import red.sukun1899.springboot.sample.service.CustomerService;
 
 import javax.validation.constraints.NotNull;
@@ -39,13 +41,14 @@ public class CustomerController {
 
     @PostMapping(value = "create")
     public String create(@Validated CustomerForm customerForm,
-                         BindingResult bindingResult, Model model) {
+                         BindingResult bindingResult, Model model,
+                         @AuthenticationPrincipal LoginUserDetails userDetails) {
         if (bindingResult.hasErrors()) {
             return list(model);
         }
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerForm, customer);
-        customerService.create(customer);
+        customerService.create(customer, userDetails.getUser());
 
         return "redirect:/customers";
     }
@@ -58,14 +61,15 @@ public class CustomerController {
     }
 
     @PostMapping(value = "edit")
-    public String edit(@RequestParam Integer id, @Validated CustomerForm form, BindingResult result) {
+    public String edit(@RequestParam Integer id, @Validated CustomerForm form, BindingResult result,
+                       @AuthenticationPrincipal LoginUserDetails userDetails) {
         if (result.hasErrors()) {
             return editForm(id, form);
         }
         Customer customer = new Customer();
         BeanUtils.copyProperties(form, customer);
         customer.setId(id);
-        customerService.update(customer);
+        customerService.update(customer, userDetails.getUser());
 
         return "redirect:/customers";
     }

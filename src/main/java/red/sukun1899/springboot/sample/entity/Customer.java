@@ -19,7 +19,7 @@ public class Customer {
     private String lastName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = true, name = "username")
+    @JoinColumn(nullable = true, name = "user_name")
     private User user;
 
     public Integer getId() {

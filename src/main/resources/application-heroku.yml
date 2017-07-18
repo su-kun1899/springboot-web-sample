@@ -1,0 +1,10 @@
+spring:
+  thymeleaf:
+    mode: HTML5
+    cache: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: create-drop

@@ -3,7 +3,7 @@ spring:
     mode: HTML5
     cache: false
   datasource:
-    url: jdbc:h2:mem:customers;
+    url: jdbc:h2:mem:customers;MODE=PostgreSQL
     username: sa
     password:
   h2:

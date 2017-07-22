@@ -8,14 +8,14 @@ readonly ENV_PORT=${PORT}
 readonly ENV_DATABASE_URL=${DATABASE_URL}
 
 # -> <username>:<password>@<hostname>:<port>/<path>
-postgres_info=${ENV_DATABASE_URL##postgres://}
+readonly POSTGRES_INFO=${ENV_DATABASE_URL##postgres://}
 
 # -> <hostname>:<port>/<path>
-readonly POSTGRES_DB_HOST=`echo ${postgres_info} | cut -d '@' -f 2`
+readonly POSTGRES_DB_HOST=`echo ${POSTGRES_INFO} | cut -d '@' -f 2`
 readonly JDBC_URL="jdbc:postgresql://${POSTGRES_DB_HOST}"
 
 # -> <username>:<password>
-readonly POSTGRES_USER_INFO=${POSTGRES_USER_INFO%%@*}
+readonly POSTGRES_USER_INFO=${POSTGRES_INFO%%@*}
 
 readonly POSTGRES_USER=`echo ${POSTGRES_USER_INFO} | cut -d ':' -f 1`
 readonly POSTGRES_PASSWORD=`echo ${POSTGRES_USER_INFO} | cut -d ':' -f 2`

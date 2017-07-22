@@ -20,6 +20,8 @@ readonly POSTGRES_USER_INFO=${POSTGRES_USER_INFO%%@*}
 readonly POSTGRES_USER=`echo ${POSTGRES_USER_INFO} | cut -d ':' -f 1`
 readonly POSTGRES_PASSWORD=`echo ${POSTGRES_USER_INFO} | cut -d ':' -f 2`
 
+echo ${JDBC_URL}
+
 java -jar target/springboot-web-sample-0.0.1-SNAPSHOT.jar \
     --server.port=${ENV_PORT} \
     --spring.profiles.active=heroku \

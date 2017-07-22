@@ -4,8 +4,8 @@ set -eu
 
 readonly ENV_PORT=${PORT}
 
-# postgres://<username>:<password>@<hostname>:<port>/<path>
-readonly POSTGRES_DATABASE_URL=${DATABASE_URL}
+# jdbc:postgres://<username>:<password>@<hostname>:<port>/<path>
+readonly POSTGRES_DATABASE_URL="jdbc:${DATABASE_URL}"
 
 # -> <username>:<password>@<hostname>:<port>/<path>
 POSTGRES_USER_INFO=${POSTGRES_DATABASE_URL##postgres://}

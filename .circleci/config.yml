@@ -46,8 +46,8 @@ jobs:
           fingerprints:
             - "13:a5:5c:36:3c:6b:3e:ff:04:eb:5a:98:e7:6c:83:24"
       - deploy:
-        name: Deploy Master to Heroku
-        command: |
-          if [ "${CIRCLE_BRANCH}" == "master" ]; then
-            git push heroku master
-          fi
+          name: Deploy Master to Heroku
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              git push heroku master
+            fi
